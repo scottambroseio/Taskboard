@@ -1,0 +1,105 @@
+info:
+  title: Taskboard API
+  version: 0.1.0
+swagger: '2.0'
+consumes:
+  - application/json
+produces:
+  - application/json
+schemes:
+  - https
+securityDefinitions:
+  apiKeyHeader:
+    type: apiKey
+    name: Ocp-Apim-Subscription-Key
+    in: header
+  apiKeyQuery:
+    type: apiKey
+    name: subscription-key
+    in: query
+security:
+  - apiKeyHeader: []
+  - apiKeyQuery: []
+paths:
+  /lists:
+    get:
+      operationId: GetLists
+      description:
+        Gets all lists
+      schemes:
+        - https
+      responses:
+        '200':
+          description: All lists
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/List'
+          examples:
+            application/json:
+              - id: '34926b72-ef5a-4912-9303-0afca9c37229'
+                name: Example list
+              - id: '311a1015-6fb6-4ab4-a039-f8d63aed784a'
+                name: Example list 2
+    post:
+      operationId: CreateList
+      description:
+        'Creates a list'
+      responses:
+        '201':
+          description: List successfully created
+      parameters:
+        - in: body
+          name: list
+          description: The list to create.
+          schema:
+            type: object
+            required:
+              - name
+            properties:
+              name:
+                type: string
+  /list/{id}:
+    get:
+      operationId: GetList
+      description:
+        'Gets a list'
+      schemes:
+        - https
+      responses:
+        '200':
+          description: The list
+          schema:
+            $ref: '#/definitions/List'
+          examples:
+            application/json:
+              id: '34926b72-ef5a-4912-9303-0afca9c37229'
+              name: Example list
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+    delete:
+      operationId: DeleteList
+      description:
+        'Deletes a list'
+      responses:
+        '204':
+          description: List successfully deleted
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+definitions:
+  List:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    required:
+      - id
+      - name

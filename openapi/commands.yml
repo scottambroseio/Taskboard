@@ -1,0 +1,42 @@
+info:
+  title: Taskboard Commands API
+  version: 0.1.0
+swagger: '2.0'
+basePath: /api
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /lists:
+    post:
+      operationId: CreateList
+      description:
+        'Creates a list'
+      responses:
+        '201':
+          description: List successfully created
+      parameters:
+        - in: body
+          name: list
+          description: The list to create.
+          schema:
+            type: object
+            required:
+              - name
+            properties:
+              name:
+                type: string
+  /list/{id}:
+    delete:
+      operationId: DeleteList
+      description:
+        'Deletes a list'
+      responses:
+        '204':
+          description: List successfully deleted
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string

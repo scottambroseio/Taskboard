@@ -1,0 +1,48 @@
+info:
+  title: Taskboard Queries API
+  version: 0.1.0
+swagger: '2.0'
+basePath: /api
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /lists:
+    get:
+      operationId: GetLists
+      description:
+        'Gets all lists'
+      responses:
+        '200':
+          description: All lists
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/List'
+  /list/{id}:
+    get:
+      operationId: GetList
+      description:
+        'Gets a list'
+      responses:
+        '200':
+          description: The list
+          schema:
+            $ref: '#/definitions/List'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+definitions:
+  List:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    required:
+      - id
+      - name
