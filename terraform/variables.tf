@@ -9,3 +9,7 @@ variable "resource_group_location" {
 variable "ai_name" {
   type = "string"
 }
+
+variable "sa_name" {
+  type = "string"
+}
