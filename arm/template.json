@@ -1,0 +1,32 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "service_name": {
+            "type": "string"
+        },
+        "publisher_email": {
+            "type": "string"
+        },
+        "publisher_name": {
+            "type": "string"
+        }
+    },
+    "resources": [
+      {
+        "apiVersion": "2018-06-01-preview",
+        "name": "[parameters('service_name')]",
+        "type": "Microsoft.ApiManagement/service",
+        "location": "[resourceGroup().location]",
+        "tags": {},
+        "sku": {
+          "name": "Consumption",
+          "capacity": "0"
+        },
+        "properties": {
+          "publisherEmail": "[parameters('publisher_email')]",
+          "publisherName": "[parameters('publisher_name')]"
+        }
+      }
+    ]
+  }
