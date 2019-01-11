@@ -43,6 +43,23 @@ definitions:
         type: string
       name:
         type: string
+      tasks:
+        type: array
+        items: 
+          $ref: '#/definitions/Task'
     required:
       - id
       - name
+  Task:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+    required:
+      - id
+      - name
+      - description
