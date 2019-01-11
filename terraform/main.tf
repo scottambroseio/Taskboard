@@ -49,7 +49,7 @@ resource "azurerm_container_group" "taskboard_queries" {
 
   container {
     name   = "taskboard-queries"
-    image  = "scottrangerio.azurecr.io/taskboard-queries:0.1"
+    image  = "scottrangerio.azurecr.io/taskboard-queries:0.2"
     cpu    = "0.5"
     memory = "1"
     port   = "80"
@@ -80,7 +80,7 @@ resource "azurerm_container_group" "taskboard_commands" {
 
   container {
     name   = "taskboard-commands"
-    image  = "scottrangerio.azurecr.io/taskboard-commands:0.1"
+    image  = "scottrangerio.azurecr.io/taskboard-commands:0.2"
     cpu    = "0.5"
     memory = "1"
     port   = "80"
