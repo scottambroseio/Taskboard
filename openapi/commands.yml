@@ -40,3 +40,75 @@ paths:
           in: path
           required: true
           type: string
+  /list/{listid}/tasks:
+    post:
+      operationId: CreateTask
+      description:
+        'Creates a Task'
+      responses:
+        '204':
+          description: Task successfully created
+      parameters:
+        - name: listid
+          in: path
+          required: true
+          type: string
+        - in: body
+          name: task
+          description: The task to create.
+          schema:
+            type: object
+            required:
+              - name
+              - description
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+  /list/{listid}/task/{taskid}:
+    put:
+      operationId: UpdateTask
+      description:
+        'Updates a Task'
+      responses:
+        '204':
+          description: Task successfully updated
+      parameters:
+        - name: listid
+          in: path
+          required: true
+          type: string
+        - name: taskid
+          in: path
+          required: true
+          type: string
+        - in: body
+          name: task
+          description: The task properties to updated.
+          schema:
+            type: object
+            required:
+              - name
+              - description
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+    delete:
+      operationId: DeleteTask
+      description:
+        'Deletes a Task'
+      responses:
+        '204':
+          description: Task successfully deleted
+      parameters:
+        - name: listid
+          in: path
+          required: true
+          type: string
+        - name: taskid
+          in: path
+          required: true
+          type: string
