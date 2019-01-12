@@ -92,6 +92,75 @@ paths:
           in: path
           required: true
           type: string
+  /list/{listid}/task/{taskid}:
+    get:
+      operationId: GetTask
+      description:
+        'Gets a task'
+      responses:
+        '200':
+          description: The task
+          schema:
+            $ref: '#/definitions/Task'
+          examples:
+            application/json:
+              id: 'f471f83c-10ed-46d3-9442-9f2a3c99de0f'
+              name: Example task
+              description: Example description
+      parameters:
+        - name: listid
+          in: path
+          required: true
+          type: string
+        - name: taskid
+          in: path
+          required: true
+          type: string
+    put:
+      operationId: UpdateTask
+      description:
+        'Updates a Task'
+      responses:
+        '204':
+          description: Task successfully updated
+      parameters:
+        - name: listid
+          in: path
+          required: true
+          type: string
+        - name: taskid
+          in: path
+          required: true
+          type: string
+        - in: body
+          name: task
+          description: The task properties to updated.
+          schema:
+            type: object
+            required:
+              - name
+              - description
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+    delete:
+      operationId: DeleteTask
+      description:
+        'Deletes a Task'
+      responses:
+        '204':
+          description: Task successfully deleted
+      parameters:
+        - name: listid
+          in: path
+          required: true
+          type: string
+        - name: taskid
+          in: path
+          required: true
+          type: string
 definitions:
   List:
     type: object
@@ -103,3 +172,16 @@ definitions:
     required:
       - id
       - name
+  Task:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+    required:
+      - id
+      - name
+      - description
