@@ -35,6 +35,25 @@ paths:
           in: path
           required: true
           type: string
+  /list/{listid}/task/{taskid}:
+    get:
+      operationId: GetTask
+      description:
+        'Gets a task'
+      responses:
+        '200':
+          description: The task
+          schema:
+            $ref: '#/definitions/Task'
+      parameters:
+        - name: listid
+          in: path
+          required: true
+          type: string
+        - name: taskid
+          in: path
+          required: true
+          type: string
 definitions:
   List:
     type: object
