@@ -2,6 +2,7 @@ info:
   title: Taskboard API
   version: 0.1.0
 swagger: '2.0'
+host: taskboard-srio-apim.azure-api.net
 consumes:
   - application/json
 produces:
@@ -24,8 +25,7 @@ paths:
   /lists:
     get:
       operationId: GetLists
-      description:
-        Gets all lists
+      description: Gets all lists
       schemes:
         - https
       responses:
@@ -37,14 +37,13 @@ paths:
               $ref: '#/definitions/List'
           examples:
             application/json:
-              - id: '34926b72-ef5a-4912-9303-0afca9c37229'
+              - id: 34926b72-ef5a-4912-9303-0afca9c37229
                 name: Example list
-              - id: '311a1015-6fb6-4ab4-a039-f8d63aed784a'
+              - id: 311a1015-6fb6-4ab4-a039-f8d63aed784a
                 name: Example list 2
     post:
       operationId: CreateList
-      description:
-        'Creates a list'
+      description: Creates a list
       responses:
         '201':
           description: List successfully created
@@ -59,11 +58,10 @@ paths:
             properties:
               name:
                 type: string
-  /list/{id}:
+  '/list/{id}':
     get:
       operationId: GetList
-      description:
-        'Gets a list'
+      description: Gets a list
       schemes:
         - https
       responses:
@@ -73,7 +71,7 @@ paths:
             $ref: '#/definitions/List'
           examples:
             application/json:
-              id: '34926b72-ef5a-4912-9303-0afca9c37229'
+              id: 34926b72-ef5a-4912-9303-0afca9c37229
               name: Example list
       parameters:
         - name: id
@@ -82,8 +80,7 @@ paths:
           type: string
     delete:
       operationId: DeleteList
-      description:
-        'Deletes a list'
+      description: Deletes a list
       responses:
         '204':
           description: List successfully deleted
@@ -92,11 +89,27 @@ paths:
           in: path
           required: true
           type: string
-  /list/{listid}/task/{taskid}:
+  '/list/{listid}/tasks':
+    post:
+      operationId: CreateTask
+      description: Creates a task
+      responses:
+        '201':
+          description: Task successfully created
+      parameters:
+        - name: listid
+          in: path
+          required: true
+          type: string
+        - name: task
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Task'
+  '/list/{listid}/task/{taskid}':
     get:
       operationId: GetTask
-      description:
-        'Gets a task'
+      description: Gets a task
       responses:
         '200':
           description: The task
@@ -104,7 +117,7 @@ paths:
             $ref: '#/definitions/Task'
           examples:
             application/json:
-              id: 'f471f83c-10ed-46d3-9442-9f2a3c99de0f'
+              id: f471f83c-10ed-46d3-9442-9f2a3c99de0f
               name: Example task
               description: Example description
       parameters:
@@ -118,8 +131,7 @@ paths:
           type: string
     put:
       operationId: UpdateTask
-      description:
-        'Updates a Task'
+      description: Updates a Task
       responses:
         '204':
           description: Task successfully updated
@@ -147,8 +159,7 @@ paths:
                 type: string
     delete:
       operationId: DeleteTask
-      description:
-        'Deletes a Task'
+      description: Deletes a Task
       responses:
         '204':
           description: Task successfully deleted
