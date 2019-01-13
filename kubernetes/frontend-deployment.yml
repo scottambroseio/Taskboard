@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: scottrangerio.azurecr.io/taskboard-frontend:0.1
+        image: scottrangerio.azurecr.io/taskboard-frontend:0.2
         ports:
         - containerPort: 80
       imagePullSecrets:
