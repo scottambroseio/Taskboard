@@ -10,26 +10,6 @@ variable "ai_name" {
   type = "string"
 }
 
-variable "sa_name" {
-  type = "string"
-}
-
 variable "cosmos_name" {
-  type = "string"
-}
-
-variable "registry_server" {
-  type = "string"
-}
-
-variable "registry_username" {
-  type = "string"
-}
-
-variable "registry_password" {
-  type = "string"
-}
-
-variable "apim_base" {
   type = "string"
 }

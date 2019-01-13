@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queries-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: queries
+  template:
+    metadata:
+      labels:
+        app: queries
+    spec:
+      containers:
+      - name: queries
+        image: scottrangerio.azurecr.io/taskboard-queries:1.0
+        ports:
+        - containerPort: 80
+        env:
+        - name: AI_INSTRUMENTATIONKEY
+          valueFrom:
+            secretKeyRef:
+              name: ai-settings
+              key: instrumentation-key
+        - name: COSMOS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: cosmos-settings
+              key: endpoint
+        - name: COSMOS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: cosmos-settings
+              key: readonly-master-key
+        - name: COSMOS_DB
+          valueFrom:
+            secretKeyRef:
+              name: cosmos-settings
+              key: db
+        - name: COSMOS_COLLECTION
+          valueFrom:
+            secretKeyRef:
+              name: cosmos-settings
+              key: collection
+      imagePullSecrets:
+      - name: azure
