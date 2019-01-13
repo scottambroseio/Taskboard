@@ -112,3 +112,30 @@ paths:
           in: path
           required: true
           type: string
+  /list/{fromlistid}/task/{taskid}/parent:
+    put:
+      operationId: MoveTask
+      description:
+        'Moves a Task'
+      responses:
+        '204':
+          description: Task successfully moved
+      parameters:
+        - name: fromlistid
+          in: path
+          required: true
+          type: string
+        - name: taskid
+          in: path
+          required: true
+          type: string
+        - in: body
+          name: parent
+          description: The parent properties for use in the move.
+          schema:
+            type: object
+            required:
+              - id
+            properties:
+              id:
+                type: string
